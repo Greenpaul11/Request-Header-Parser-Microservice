@@ -3,6 +3,7 @@
 
 // init project
 require('dotenv').config();
+var headerParser = require('./headerParser')
 var express = require('express');
 var app = express();
 
@@ -23,6 +24,8 @@ app.get('/', function (req, res) {
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
+
+app.use('/api', headerParser)
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
